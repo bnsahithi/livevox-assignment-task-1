@@ -1,0 +1,49 @@
+This project is written using pytest framework. 
+
+Steps to execute all the testcases 
+1) Navigate to "project" folder 
+2) cli cmd -> pytest --html=report.html -vvv -s --string_value=user1
+
+Pre Requisites -
+1) aws key and secret to be configured in os environment, so that project can use it via os.environ['aws_access_key_id'], os.environ['aws_secret_access_key'] 
+2) pytest installed 
+
+
+Below is the console snippet when all the test cases are executed - 
+(venv) PS D:\OneDrive - Sahithi\Desktop\project> pytest --html=report.html -vvv .\TestCases\ -s --string_value=user1
+========================================================================================= test session starts ==========================================================================================
+platform win32 -- Python 3.8.10, pytest-7.4.3, pluggy-1.3.0 -- d:\onedrive - Sahithi\desktop\project\venv\scripts\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.8.10', 'Platform': 'Windows-10-10.0.19044-SP0', 'Packages': {'pytest': '7.4.3', 'pluggy': '1.3.0'}, 'Plugins': {'html': '4.1.1', 'metadata': '3.0.0'}}
+rootdir: D:\OneDrive - Sahithi\Desktop\project
+plugins: html-4.1.1, metadata-3.0.0
+collected 6 items
+
+TestCases/test_1.py::test_A_1_current_cap_desired_cap_should_be_same Auto Scaling Group: lv-test-cpu
+Desired Instance Count: 2
+Running Instance Count: 2
+Successfully Verified : Desired Instance Count and Running Instance Count to be same
+PASSED
+TestCases/test_1.py::test_A_2_unique_availability_zones_foreach_ec2_instance Instances are present in unique availability zones
+PASSED
+TestCases/test_1.py::test_A_3_same_properties_across_ec2_instances Instances SecurityGroups : ['sg-01ed211096b26e7ba', 'sg-0a42e677ef7bcf525']
+Instances ImageId : ami-09ba48996007c8b50
+Instances VpcId : vpc-0c3c613c402cbce8d
+All instances in the Auto Scaling Group have the same Security Groups, Image ID, and VPC ID.
+PASSED
+Instance i-07db0ad1b8733e40f Uptime: 20:57:46.005654
+
+The instance with the longest uptime is i-04b5eba340552b572 with uptime: 20:57:46.006497
+PASSED
+TestCases/test_2.py::test_B_1_calculate_elapsed_time_for_schd_action {'ScheduledUpdateGroupActions': [{'AutoScalingGroupName': 'lv-test-cpu', 'ScheduledActionName': 'action1', 'ScheduledActionARN': 'arn:aws:autoscaling:ap-south-1:233793250633:scheduledUpdateGroupAction:090ba490-bb3d-4630-b4e8-14bd5e05dc8b:autoScalingGroupName/lv-test-cpu:scheduledActionName/action1', 'Time': datetime.datetime(2023, 
+11, 20, 0, 0, tzinfo=tzutc()), 'StartTime': datetime.datetime(2023, 11, 20, 0, 0, tzinfo=tzutc()), 'Recurrence': '0 0 * * *', 'MaxSize': 3, 'DesiredCapacity': 0, 'TimeZone': 'Etc/UTC'}], 'NextToken': '10b6b125-19da-455e-9d7e-b633aacf1cc3', 'ResponseMetadata': {'RequestId': '358744de-6ecf-4776-820d-f38f4ff4d9ec', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': '358744de-6ecf-4776-820d-f38f4ff4d9ec', 'content-type': 'text/xml', 'content-length': '1060', 'date': 'Sun, 19 Nov 2023 11:53:43 GMT'}, 'RetryAttempts': 0}}
+Elapsed Time: 12:06:15
+PASSED
+TestCases/test_2.py::test_B_2_calc_instances_launched_vs_terminated
+instances_launched : 0
+instances_terminated : 0
+PASSED
+
+-------------------------------------------------- Generated html report: file:///D:/OneDrive%20-%20Sahithi/Desktop/project/report.html -------------------------------------------------- 
+========================================================================================== 6 passed in 4.23s =========================================================================================== 
+(venv) PS D:\OneDrive - Sahithi\Desktop\project> ^C
